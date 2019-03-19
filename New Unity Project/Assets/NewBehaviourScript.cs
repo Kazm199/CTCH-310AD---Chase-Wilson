@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public AudioClip crash;
+
+    private AudioSource source;
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>(); 
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +25,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void getplayerinput()
     {
+        Pew();
         Cursor.lockState = CursorLockMode.Locked;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -52,6 +61,10 @@ public class NewBehaviourScript : MonoBehaviour
 
         transform.Rotate(-v, 0, 0);
         transform.Rotate(0, h, 0);
+    }
+    void Pew()
+    {
+        source.PlayOneShot(crash, 0.5f);
     }
 
 }
